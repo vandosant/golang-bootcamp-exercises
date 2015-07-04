@@ -1,44 +1,14 @@
 package main
 
-import "fmt"
+import "golang.org/x/tour/tree"
 
-var (
-	coins = 50
-	users = []string{
-		"Matthew", "Sarah", "Augustus", "Heidi", "Emilie",
-		"Peter", "Giana", "Adriano", "Aaron", "Elizabeth",
-	}
-	distribution = make(map[string]int, len(users))
-)
+// Walk walks the tree t sending all values
+// from the tree to the channel ch.
+func Walk(t *tree.Tree, ch chan int)
+
+// Same determines whether the trees
+// t1 and t2 contain the same values.
+func Same(t1, t2 *tree.Tree) bool
 
 func main() {
-	coinsForUser := func(name string) int {
-		var total int
-		for i := 0; i < len(name); i++ {
-			switch string(name[i]) {
-			case "a", "A":
-				total++
-			case "e", "E":
-				total++
-			case "i", "I":
-				total = total + 2
-			case "o", "O":
-				total = total + 3
-			case "u", "U":
-				total = total + 4
-			}
-		}
-		return total
-	}
-
-	for _, name := range users {
-		v := coinsForUser(name)
-		if v > 10 {
-			v = 10
-		}
-		distribution[name] = v
-		coins = coins - v
-	}
-	fmt.Println(distribution)
-	fmt.Println("Coins left:", coins)
 }
